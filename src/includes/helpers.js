@@ -26,4 +26,18 @@ const yenToUsd = (yen) => {
     return yen * exchangeRate;
 };
 
-export { generateConfirmationCode, kmToMiles, yenToUsd };
+const MONTH_ABBREVS = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
+
+/**
+ * Converts a month number (1-12) to a three-letter abbreviation.
+ * @param {number} monthNumber - The month number (1 = January, 12 = December).
+ * @returns {string} The three-letter month abbreviation.
+ */
+const monthToAbbrev = (monthNumber) => {
+    const index = monthNumber - 1;
+    return MONTH_ABBREVS[index] ?? String(monthNumber);
+};
+
+export { generateConfirmationCode, kmToMiles, yenToUsd, monthToAbbrev };
+
+
