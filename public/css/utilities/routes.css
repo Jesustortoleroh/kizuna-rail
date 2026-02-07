@@ -1,3 +1,15 @@
+/* Grid layout */
+#filters {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: var(--space-lg);
+  max-width: 1200px;
+  margin: 0 auto var(--space-lg);
+}
+
+#region-filter { justify-self: center; width: 320px; max-width: 100%; }
+#season-filter { justify-self: center; width: 320px; max-width: 100%; }
+
 .routes-grid {
     display: flex;
     flex-direction: column;
