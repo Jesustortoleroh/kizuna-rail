@@ -404,13 +404,13 @@ article.confirmation-page {
         opacity: 1;
     }
 }
-
+  /* Add print styles */
 @media print {
   @page {
     size: auto;
     margin: 10mm;
   }
-
+/* Clean white page */
   html, body {
     background: #fff !important;
     color: #000 !important;
