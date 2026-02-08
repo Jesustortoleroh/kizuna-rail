@@ -405,7 +405,7 @@ article.confirmation-page {
     }
 }
 
- @media print {
+@media print {
   @page {
     size: auto;
     margin: 10mm;
@@ -446,9 +446,7 @@ article.confirmation-page {
       display: none !important;
     }
 
-    .next-steps {
-      display: none !important;
-    }
+   
 
     .confirmation-header {
       background: #fff !important;
