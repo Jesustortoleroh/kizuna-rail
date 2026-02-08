@@ -405,164 +405,98 @@ article.confirmation-page {
     }
 }
 
-@media print {
-    @page {
-        margin: 0.35in;
+ @media print {
+  @page {
+    size: auto;
+    margin: 10mm;
+  }
+
+  html, body {
+    background: #fff !important;
+    color: #000 !important;
+    margin: 0 !important;
+    padding: 0 !important;
+  }
+
+  body {
+    -webkit-print-color-adjust: exact;
+    print-color-adjust: exact;
+  }
+
+  header, header *,
+  nav, nav *,
+  footer, footer * {
+    display: none !important;
+  }
+
+  *, *::before, *::after {
+    animation: none !important;
+    transition: none !important;
+    box-shadow: none !important;
+    text-shadow: none !important;
+  }
+
+  article.confirmation-page {
+    max-width: none !important;
+    margin: 0 !important;
+    padding: 0 !important;
+
+    .confirmation-actions,
+    .confirmation-actions * {
+      display: none !important;
     }
 
-    header,
-    header *,
-    nav,
-    footer {
-        display: none !important;
+    .next-steps {
+      display: none !important;
     }
 
-    body {
-        -webkit-print-color-adjust: exact;
-        print-color-adjust: exact;
+    .confirmation-header {
+      background: #fff !important;
+      border: 2px solid var(--clr-primary) !important;
+      border-radius: 0 !important;
     }
 
-    article.confirmation-page {
-        max-width: 100%;
-        margin: 0;
-        padding: 0;
-
-        .confirmation-actions {
-            display: none !important;
-        }
-
-        .confirmation-header {
-            padding: var(--space-sm) var(--space-md) !important;
-            margin-bottom: var(--space-sm) !important;
-            gap: var(--space-xs) !important;
-            background-color: white;
-            border: 2px solid var(--clr-primary);
-
-            .success-icon {
-                width: 32px;
-                height: 32px;
-
-                svg {
-                    width: 32px;
-                    height: 32px;
-                }
-            }
-
-            .confirmation-title {
-                font-size: var(--font-size-lg) !important;
-            }
-
-            .confirmation-message {
-                font-size: var(--font-size-xs) !important;
-            }
-
-            .booking-reference {
-                padding: var(--space-xs) var(--space-sm) !important;
-                margin-top: var(--space-xs) !important;
-
-                .reference-number {
-                    font-size: var(--font-size-md) !important;
-                }
-            }
-        }
-
-        .confirmation-content {
-            gap: var(--space-sm) !important;
-
-            .section-title {
-                font-size: var(--font-size-md) !important;
-                margin-bottom: var(--space-xs) !important;
-                padding-bottom: 2px !important;
-                border-bottom-width: 1px !important;
-            }
-
-            .booking-details .details-grid {
-                grid-template-columns: repeat(4, 1fr) !important;
-                gap: var(--space-xs) !important;
-
-                .detail-card {
-                    padding: var(--space-xs) var(--space-sm) !important;
-
-                    .detail-icon {
-                        font-size: var(--font-size-lg) !important;
-                    }
-
-                    .detail-value {
-                        font-size: var(--font-size-md) !important;
-                    }
-                }
-            }
-
-            .passengers-info {
-                .passengers-list {
-                    gap: var(--space-xs) !important;
-
-                    .passenger-info-card {
-                        .passenger-header {
-                            padding: var(--space-xs) var(--space-sm) !important;
-
-                            .passenger-title {
-                                font-size: var(--font-size-sm) !important;
-                            }
-                        }
-
-                        .passenger-details {
-                            padding: var(--space-sm) !important;
-                            gap: var(--space-xs) !important;
-
-                            .passenger-value {
-                                font-size: var(--font-size-sm) !important;
-                            }
-                        }
-                    }
-                }
-            }
-
-            .next-steps .steps-list {
-                display: grid !important;
-                grid-template-columns: 1fr 1fr !important;
-                gap: var(--space-xs) !important;
-
-                .step-item {
-                    gap: 2px !important;
-
-                    .step-number {
-                        width: 20px;
-                        height: 20px;
-                        font-size: 1rem !important;
-                    }
-
-                    .step-content {
-                        .step-title {
-                            font-size: var(--font-size-xs) !important;
-                        }
-
-                        .step-description {
-                            font-size: 1.1rem !important;
-                            line-height: 1.3 !important;
-                        }
-                    }
-                }
-            }
-
-            .important-info {
-                padding: var(--space-sm) !important;
-
-                .info-title {
-                    font-size: var(--font-size-sm) !important;
-                    margin-bottom: var(--space-xs) !important;
-                }
-
-                .info-list {
-                    gap: 2px !important;
-
-                    li {
-                        font-size: 1rem !important;
-                        line-height: 1.3 !important;
-                        padding-left: var(--space-md) !important;
-                    }
-                }
-            }
-        }
+    .confirmation-message {
+      max-width: none !important;
     }
+
+    .detail-card,
+    .passenger-info-card,
+    .important-info,
+    .booking-reference,
+    .passenger-header {
+      background: #fff !important;
+    }
+
+    .booking-details,
+    .passengers-info,
+    .important-info,
+    .booking-reference,
+    .details-grid,
+    .detail-card,
+    .passengers-list,
+    .passenger-info-card {
+      break-inside: avoid !important;
+      page-break-inside: avoid !important;
+    }
+
+    h1, h2, h3 {
+      break-after: avoid !important;
+      page-break-after: avoid !important;
+    }
+
+
+    .booking-details .details-grid {
+      grid-template-columns: repeat(2, 1fr) !important;
+    }
+  }
+
+  a[href]::after {
+    content: "" !important;
+  }
+
+  img, svg {
+    max-width: 100% !important;
+    height: auto !important;
+  }
 }
