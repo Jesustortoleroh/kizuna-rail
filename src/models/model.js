@@ -1,4 +1,4 @@
-import { generateConfirmationCode } from '../includes/helpers.js';
+import { generateConfirmationCode, yenToUsd } from '../includes/helpers.js';
 import { getDb as db } from './db-in-file.js';
 
 // ROUTE MODEL FUNCTIONS
@@ -159,20 +159,26 @@ export const calculateTicketPrice = async (routeId, className) => {
 
     if (!route || !ticketClass) return null;
 
-    return route.distance * ticketClass.pricePerKm;
+    const priceYen = route.distance * ticketClass.pricePerKm;
+    return Number(yenToUsd(priceYen).toFixed(2));
 };
 
 export const getTicketOptionsForRoute = async (routeId) => {
     const route = await getRouteById(routeId);
     if (!route) return null;
 
-    return db().ticketClasses.map(tc => ({
-        class: tc.class,
-        name: tc.name,
-        price: route.distance * tc.pricePerKm,
-        amenities: tc.amenities,
-        description: tc.description
-    }));
+    return db().ticketClasses.map(tc => {
+        const priceYen = route.distance * tc.pricePerKm;
+        const priceUsd = Number(yenToUsd(priceYen).toFixed(2));
+
+        return {
+            class: tc.class,
+            name: tc.name,
+            price: priceUsd,              // <-- Price in USD
+            amenities: tc.amenities,
+            description: tc.description
+        };
+    });
 };
 
 export const getTicketOptionsForSchedule = async (scheduleId) => {
