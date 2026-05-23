@@ -1,5 +1,6 @@
-import { generateConfirmationCode } from '../includes/helpers.js';
+import { generateConfirmationCode, formatMonth } from '../includes/helpers.js';
 import { getDb as db } from './db-in-file.js';
+
 
 // ROUTE MODEL FUNCTIONS
 
@@ -147,6 +148,7 @@ export const getCompleteRouteDetails = async (routeId) => {
 
     return {
         ...route,
+        operatingMonths: route.operatingMonths.map(month => formatMonth(month)),
         startStationDetails: startStation,
         endStationDetails: endStation,
         schedules: routeSchedules

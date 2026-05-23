@@ -7,7 +7,7 @@ export default async (req, res) => {
     const seasons = await getListOfSeasons();
 
     const {region, season} = req.query
-
+   // If the user has selected a region or season, filter the routes accordingly.
     if (region) {
         routes = routes.filter(route => route.region === region);
     }
