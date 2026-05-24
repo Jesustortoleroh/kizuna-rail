@@ -6,20 +6,27 @@ export default async (req, res) => {
     let routes = await getAllRoutes();
     const seasons = await getListOfSeasons();
 
-    const {region, season} = req.query
-   // If the user has selected a region or season, filter the routes accordingly.
-    if (region) {
-        routes = routes.filter(route => route.region === region);
-    }
+   const { region, season } = req.query;
+if (region && region !== 'all') {
+    routes = routes.filter(r =>
+      r.region.toLowerCase() === region.toLowerCase()
+    );
+  }
 
-    if (season) {
-        routes = routes.filter(routes => routes.bestSeason === season);
-    }
+  if (season && season !== 'all') {
+    routes = routes.filter(r =>
+      r.bestSeason.toLowerCase() === season.toLowerCase()
+    );
+  }
+
+  
 
     res.render('routes/list', { 
         title: 'Scenic Train Routes',
         regions,
         routes,
-        seasons
+        seasons,
+        query: req.query
     });
+    
 };

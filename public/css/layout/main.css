@@ -8,25 +8,21 @@ main {
 }
 
 #filters {
-    display: flex !important;
-    justify-content: space-around; /* Pushes the region block to the far left and season block to the far right */
-    align-items: center; /* Vertically centers the filter row */
+    display: flex;
+    flex-direction: row;            
+    justify-content: space-around; 
+    align-items: center;
+    gap: 10px;                                 
+    margin-bottom: 30px;           
     width: 100%;
-    margin-bottom: 30px;            /* Adds baseline clearance below the filter row */
 }
 
-/* Optional standard styling to clean up text and selector layouts side-by-side */
-#filters select {
-    padding: 6px 12px;
-    border-radius: 4px;
-    border: 1px solid #ccc;
-    margin-left: 8px;
+@media (max-width: 600px) {
+    #filters {
+        flex-direction: column;     
+        align-items: center;       
+        text-align: center;
+        gap: 15px;
+    }
 }
-
-/* Ensure spacing between search text and sibling select options */
-#region-filter {
-    margin-right: 0;
-}
-
-
 
