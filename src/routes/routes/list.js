@@ -5,9 +5,10 @@ export default async (req, res) => {
     // I changed const routes = await getAllRoutes(); to let so the routes could be updated.
     let routes = await getAllRoutes();
     const seasons = await getListOfSeasons();
-
+   
+    // Filter routes based on query parameters
    const { region, season } = req.query;
-if (region && region !== 'all') {
+  if (region && region !== 'all') {
     routes = routes.filter(r =>
       r.region.toLowerCase() === region.toLowerCase()
     );
@@ -20,7 +21,7 @@ if (region && region !== 'all') {
   }
 
   
-
+   // Render the list view with the filtered routes and other data
     res.render('routes/list', { 
         title: 'Scenic Train Routes',
         regions,
