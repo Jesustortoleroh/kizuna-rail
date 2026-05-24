@@ -406,14 +406,127 @@ article.confirmation-page {
 }
 
 @media print {
-    article.confirmation-page {
-        .confirmation-actions {
-            display: none;
-        }
+    /* Reset page margins for a tight fit */
+    @page {
+        size: auto;
+        margin: 12mm;
+    }
 
-        .confirmation-header {
-            background-color: white;
-            border: 2px solid var(--clr-primary);
+    body {
+        background: white !important;
+        font-size: 12px !important;
+        color: black !important;
+    }
+
+    /* Hide global layout elements & non-essentials */
+    header,
+    footer,
+    nav,
+    .confirmation-actions,
+    .btn,
+    .success-icon,
+    .detail-icon,
+    .next-steps {
+        display: none !important;
+    }
+
+    /* Main container reset */
+    article.confirmation-page {
+        max-width: 100% !important;
+        margin: 0 !important;
+        padding: 0 !important;
+        box-shadow: none !important;
+        font-size: 12px !important;
+        color: black !important;
+
+        /* Tighten inner content flow */
+        .confirmation-content {
+            gap: 12px !important;
+
+            .section-title {
+                margin-bottom: 6px !important;
+                padding-bottom: 4px !important;
+                border-bottom: 1px solid black !important;
+            }
+
+            /* Preserve horizontal grids on paper width */
+            .booking-details .details-grid {
+                grid-template-columns: repeat(4, 1fr) !important;
+                gap: 8px !important;
+
+                .detail-card {
+                    border: 1px solid black !important;
+                    box-shadow: none !important;
+                    padding: 8px !important;
+                    background: none !important;
+                }
+            }
+
+            /* Tighten passenger card layout */
+            .passengers-info .passengers-list {
+                gap: 8px !important;
+
+                .passenger-info-card {
+                    border: 1px solid black !important;
+                    box-shadow: none !important;
+
+                    .passenger-header {
+                        padding: 6px 8px !important;
+                        background: none !important;
+                        border-bottom: 1px solid black !important;
+                    }
+
+                    .passenger-details {
+                        flex-direction: row !important;
+                        gap: 16px !important;
+                        padding: 8px !important;
+                        
+                        .passenger-detail {
+                            gap: 2px !important;
+                        }
+                    }
+                }
+            }
+
+            /* Flatten instructions area */
+            .important-info {
+                margin-top: 10px !important;
+                padding: 10px !important;
+                background: none !important;
+                border: 1px solid black !important;
+                border-left: 4px solid black !important;
+
+                .info-title {
+                    margin-bottom: 4px !important;
+                }
+            }
         }
+    }
+
+    /* Header adjustments */
+    .confirmation-header {
+        background: none !important;
+        border: none !important;
+        padding: 0 0 10px 0 !important;
+        margin-bottom: 10px !important;
+        gap: 8px !important;
+
+        .booking-reference {
+            border: 1px dashed black !important;
+            background: none !important;
+            padding: 6px 12px !important;
+            flex-direction: row !important;
+            gap: 10px !important;
+        }
+    }
+
+    /* Defend against messy mid-card page splits */
+    .confirmation-header,
+    .booking-details,
+    .passengers-info,
+    .passenger-info-card,
+    .important-info {
+        page-break-inside: avoid !important;
+        break-inside: avoid !important;
     }
 }
