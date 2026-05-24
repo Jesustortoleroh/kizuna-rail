@@ -12,10 +12,11 @@ main {
     flex-direction: row;            
     justify-content: space-around; 
     align-items: center;
-    gap: 10px;                                 
-    margin-bottom: 30px;           
-    width: 100%;
+    gap: 20px;                              
+   
 }
+
+
 
 @media (max-width: 600px) {
     #filters {
